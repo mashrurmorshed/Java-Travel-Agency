@@ -1,0 +1,210 @@
+create table account(
+ID integer primary key autoincrement,
+Name char not null,
+Email char not null unique,
+Phone char,
+Username char not null unique,
+Password char not null,
+Trips integer default 0
+);
+
+insert into account(Name,Email,Phone,Username,Password) values("Mashrur","user@gmail.com","1234","user1","pass");
+
+create table hotel(
+ID integer primary key autoincrement,
+Location char not null,
+Name char not null
+);
+
+create table room(
+ID integer primary key autoincrement,
+hotel_id integer,
+roomno char,
+cost integer,
+foreign key(hotel_id) references hotel(ID)
+);
+
+create table bus_transport(
+ID integer primary key autoincrement,
+Location char not null,
+Name char not null
+);
+
+create table bus_seats(
+ID integer primary key autoincrement,
+bus_id integer,
+seatno char,
+cost integer,
+foreign key(bus_id) references bus_transport(ID)
+);
+
+create table air_transport(
+ID integer primary key autoincrement,
+Location char not null,
+Name char not null
+);
+
+create table air_seats(
+ID integer primary key autoincrement,
+air_id integer,
+seatno char,
+cost integer,
+foreign key(air_id) references air_transport(ID)
+);
+
+create table rate(
+ID integer primary key autoincrement,
+type integer,
+rating integer
+);
+
+
+select bs.seatno from bus_seats bs,bus_transport bt where bs.bus_id=bt.ID and bs.bus_id=4;
+
+insert into bus_seats(bus_id,seatno,cost) values(1,"D4",850);
+insert into bus_seats(bus_id,seatno,cost) values(1,"A3",850);
+insert into bus_seats(bus_id,seatno,cost) values(2,"E4",750);
+insert into bus_seats(bus_id,seatno,cost) values(2,"E3",750);
+insert into bus_seats(bus_id,seatno,cost) values(3,"F1",700);
+insert into bus_seats(bus_id,seatno,cost) values(4,"C3",800);
+
+insert into bus_seats(bus_id,seatno,cost) values(5,"A4",450);
+insert into bus_seats(bus_id,seatno,cost) values(5,"A3",450);
+insert into bus_seats(bus_id,seatno,cost) values(5,"A2",450);
+insert into bus_seats(bus_id,seatno,cost) values(6,"B4",500);
+insert into bus_seats(bus_id,seatno,cost) values(7,"C4",450);
+
+insert into bus_seats(bus_id,seatno,cost) values(8,"D4",450);
+insert into bus_seats(bus_id,seatno,cost) values(8,"A2",450);
+insert into bus_seats(bus_id,seatno,cost) values(9,"A3",450);
+
+insert into bus_seats(bus_id,seatno,cost) values(10,"D4",450);
+insert into bus_seats(bus_id,seatno,cost) values(10,"C4",450);
+insert into bus_seats(bus_id,seatno,cost) values(11,"B1",500);
+insert into bus_seats(bus_id,seatno,cost) values(12,"B1",550);
+insert into bus_seats(bus_id,seatno,cost) values(12,"B2",550);
+
+insert into bus_seats(bus_id,seatno,cost) values(13,"D4",400);
+insert into bus_seats(bus_id,seatno,cost) values(13,"D1",430);
+
+
+
+
+select * from bus_seats bs,bus_transport bt where bs.bus_id=bt.ID;
+<<ID | Location | Name>>
+
+Cox's Bazaar, Sylhet, Rangamati, Bandarban, Nilgiri
+--hotel
+insert into hotel(Location,Name) values("Cox's bazaar","Sea Crown");
+insert into hotel(Location,Name) values("Cox's Bazaar","Long Beach");
+insert into hotel(Location,Name) values("Cox's Bazaar","Sayeman");
+
+insert into hotel(Location,Name) values("Sylhet","Panshi");
+insert into hotel(Location,Name) values("Sylhet","Grand Sultan");
+
+insert into hotel(Location,Name) values("Rangamati","Meridian");
+
+insert into hotel(Location,Name) values("Bandarban","Peninsula");
+insert into hotel(Location,Name) values("Bandarban","Swiss Garden");
+
+insert into hotel(Location,Name) values("Nilgiri","Nilgiri Hill Resort");
+
+
+
+--bus--
+insert into bus_transport(Location,Name) values("Cox's Bazaar","Hanif");
+insert into bus_transport(Location,Name) values("Cox's Bazaar","Silk Line");
+insert into bus_transport(Location,Name) values("Cox's Bazaar","Ena");
+insert into bus_transport(Location,Name) values("Cox's Bazaar","Green Line");
+
+insert into bus_transport(Location,Name) values("Sylhet","Hanif");
+insert into bus_transport(Location,Name) values("Sylhet","Green Line");
+insert into bus_transport(Location,Name) values("Sylhet","Silk Line");
+
+insert into bus_transport(Location,Name) values("Rangamati","Silk Line");
+insert into bus_transport(Location,Name) values("Rangamati","Green Line");
+
+insert into bus_transport(Location,Name) values("Bandarban","Ena");
+insert into bus_transport(Location,Name) values("Bandarban","Hanif");
+insert into bus_transport(Location,Name) values("Bandarban","Shyamoli Pb");
+
+insert into bus_transport(Location,Name) values("Nilgiri","Silk Line");
+
+--air--
+insert into air_transport(Location,Name) values("Cox's Bazaar","Regent");
+insert into air_transport(Location,Name) values("Cox's Bazaar","US Bangla");
+insert into air_transport(Location,Name) values("Cox's Bazaar","United Airways");
+
+insert into air_transport(Location,Name) values("Sylhet","Regent");
+insert into air_transport(Location,Name) values("Sylhet","US Bangla");
+
+insert into air_transport(Location,Name) values("Nilgiri","Regent");
+
+--
+
+insert into air_seats(air_id,seatno,cost) values(1,"Business-A1",10050);
+insert into air_seats(air_id,seatno,cost) values(1,"Business-B3",10050);
+insert into air_seats(air_id,seatno,cost) values(1,"Econ-J2",4000);
+insert into air_seats(air_id,seatno,cost) values(1,"Econ-H1",4000);
+
+insert into air_seats(air_id,seatno,cost) values(2,"Econ-B1",5000);
+insert into air_seats(air_id,seatno,cost) values(2,"Econ-B2",5000);
+insert into air_seats(air_id,seatno,cost) values(2,"Econ-B3",5000);
+
+insert into air_seats(air_id,seatno,cost) values(3,"Business-F2",9500);
+insert into air_seats(air_id,seatno,cost) values(3,"Business-C1",9500);
+insert into air_seats(air_id,seatno,cost) values(3,"Business-B3",9500);
+
+insert into air_seats(air_id,seatno,cost) values(4,"Econ-D1",4000);
+insert into air_seats(air_id,seatno,cost) values(4,"Econ-D2",4000);
+insert into air_seats(air_id,seatno,cost) values(4,"Business-B1",10000);
+insert into air_seats(air_id,seatno,cost) values(4,"Business-B2",10000);
+
+insert into air_seats(air_id,seatno,cost) values(5,"Econ-A2",4000);
+insert into air_seats(air_id,seatno,cost) values(5,"Econ-A1",4000);
+
+insert into air_seats(air_id,seatno,cost) values(6,"Econ-C2",5000);
+insert into air_seats(air_id,seatno,cost) values(6,"Econ-C1",5000);
+
+--rooms
+insert into room(hotel_id,roomno,cost) values(1,"301",4000);
+insert into room(hotel_id,roomno,cost) values(1,"302",4000);
+insert into room(hotel_id,roomno,cost) values(1,"201",5000);
+insert into room(hotel_id,roomno,cost) values(1,"202",5000);
+insert into room(hotel_id,roomno,cost) values(1,"Presidential 501",10000);
+
+
+insert into room(hotel_id,roomno,cost) values(2,"3A",4000);
+insert into room(hotel_id,roomno,cost) values(2,"3B",4000);
+insert into room(hotel_id,roomno,cost) values(2,"4J",5000);
+insert into room(hotel_id,roomno,cost) values(2,"7C",5000);
+
+insert into room(hotel_id,roomno,cost) values(3,"202",6000);
+insert into room(hotel_id,roomno,cost) values(3,"203",6000);
+insert into room(hotel_id,roomno,cost) values(3,"204",6000);
+insert into room(hotel_id,roomno,cost) values(3,"205",6000);
+
+insert into room(hotel_id,roomno,cost) values(4,"205",4000);
+insert into room(hotel_id,roomno,cost) values(4,"206",4000);
+
+insert into room(hotel_id,roomno,cost) values(5,"510",9000);
+insert into room(hotel_id,roomno,cost) values(5,"401",8000);
+insert into room(hotel_id,roomno,cost) values(5,"602",9000);
+
+insert into room(hotel_id,roomno,cost) values(6,"401",4000);
+insert into room(hotel_id,roomno,cost) values(6,"402",5000);
+
+insert into room(hotel_id,roomno,cost) values(7,"303",5000);
+insert into room(hotel_id,roomno,cost) values(7,"304",4000);
+
+insert into room(hotel_id,roomno,cost) values(8,"404",4000);
+insert into room(hotel_id,roomno,cost) values(8,"419",5000);
+
+insert into room(hotel_id,roomno,cost) values(9,"102",3000);
+insert into room(hotel_id,roomno,cost) values(9,"103",5000);
+
+
+
+
+
+
